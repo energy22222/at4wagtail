@@ -1,0 +1,58 @@
+
+<!-- saved from url=(0144)https://www.pythonanywhere.com/user/aturcotte/files/home/aturcotte/wagtail-pythonanywhere-quickstart/blog/templates/blog/components/sidebar.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body>{% load static wagtailcore_tags wagtailimages_tags  %}
+
+<div class="col-md-4">
+
+
+    <!-- Search Widget -->
+    <div class="card my-4">
+      <h5 class="card-header">Recherche</h5>
+      <div class="card-body">
+
+<!--
+        <div class="input-group">
+          <input type="text" class="form-control search-query" name="q" placeholder="Recherche&hellip;" title="Recherche...:" />
+          <span class="input-group-btn">
+            <button class="btn btn-secondary" type="button">Go!</button>
+          </span>
+        </div>
+-->
+    
+<!--
+
+je laisse l'affichage des résultats dans Search.html
+    {% if search_results %}
+        <ul>
+            {% for result in search_results %}
+                <li>
+                    <h4><a href="{% pageurl result %}">{{ result }}</a></h4>
+                    {% if result.search_description %}
+                        {{ result.search_description }}
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+
+        {% if search_results.has_previous %}
+            <a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.previous_page_number }}">Previous</a>
+        {% endif %}
+
+        {% if search_results.has_next %}
+            <a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.next_page_number }}">Next</a>
+        {% endif %}
+    {% elif search_query %}
+        No results found
+    {% endif %}
+
+-->
+
+      </div>
+    </div>
+
+
+
+
+
+</div>
+</body></html>

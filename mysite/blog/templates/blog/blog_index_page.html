@@ -5,15 +5,42 @@
 {% block body_class %}template-blogindexpage{% endblock %}
 
 {% block content %}
-    <h1>{{ page.title }}</h1>
+    <div class="card-text">
+    <h4>{{ page.title }}</h4>
+    </div>
 
-    <div class="intro">{{ page.intro|richtext }}</div>
+    <!-- l'intro du blog -->
+    <div class="card-header">{{ page.intro|richtext }}</div>
+    <p></p>
 
     {% for post in blogpages %}
     {% with post=post.specific %}
-        <h2><a href="{% pageurl post %}">{{ post.title }}</a></h2>
-        <p>{{ post.intro }}</p>
-        {{ post.body|richtext }}
+        <!--div class="card text-white bg-dark mb-3" style="max-width: 46rem;"-->
+        <!-- mb-3  donne l'espace entre 2 post-->
+        <div class="card mb-3" style="max-width: 46rem;">
+
+            <div class="card-header">
+                <!--h5 class="card-link"-->
+                <a href="{% pageurl post %}">{{ post.title }}</a>
+                <!--/h5-->
+            </div>
+
+            <div class="card-body">
+
+                <!-- on definit l'image comme un hyperlien vers la publication-->
+                <a href="{% pageurl post %}">
+				<!--  gestion des images-->
+
+                </a>
+
+
+                <p class="card-text">
+                {{ post.intro }}
+                </p>
+
+            </div>
+        </div>
+
     {% endwith %}
 {% endfor %}
 

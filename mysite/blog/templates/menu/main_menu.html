@@ -1,0 +1,20 @@
+
+<!-- saved from url=(0135)https://www.pythonanywhere.com/user/aturcotte/files/home/aturcotte/wagtail-pythonanywhere-quickstart/blog/templates/menu/main_menu.html -->
+<html>
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+
+<ul class="navbar-nav">
+
+
+{% for item in menu_items %}
+    <li class="nav-item">
+        <a class="nav-link" href="https://github.com/energy22222">
+          {{ item.text }}
+        </a>
+    </li>
+{% endfor %}
+</ul>
+</body>
+</html>

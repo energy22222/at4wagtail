@@ -24,8 +24,9 @@
         {% endif %}
 
         {# Global stylesheets #}
-        <link rel="stylesheet" type="text/css" href="{% static 'css/mysite.css' %}">
-
+        <link rel="stylesheet" type="text/css" href="{% static 'css/United.css' %}">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+        
         {% block extra_css %}
         {# Override this in templates to add extra stylesheets #}
         {% endblock %}
@@ -34,7 +35,19 @@
     <body class="{% block body_class %}{% endblock %}">
         {% wagtailuserbar %}
 
-        {% block content %}{% endblock %}
+        {% include 'blog/components/navbar.html' %}
+
+        <!-- alain -->
+        <div class="container">
+          <div class="row">
+              <div class="col-md-8">
+                {% block content %}{% endblock %}
+              </div>
+              {% include 'blog/components/sidebar.html' %}
+          </div>
+        </div>
+
+        {% include 'blog/components/footer.html' %}
 
         {# Global javascript #}
         <script type="text/javascript" src="{% static 'js/mysite.js' %}"></script>

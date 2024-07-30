@@ -5,12 +5,16 @@
 {% block body_class %}template-blogpage{% endblock %}
 
 {% block content %}
-    <h1>{{ page.title }}</h1>
-    <p class="meta">{{ page.date }}</p>
+    <div class="card-body"><h2>{{ page.title }}</h2></div>
+    <div class="card-body">
+        {{ page.date }}
+        </p>
+    </div>
 
-    <div class="intro">{{ page.intro }}</div>
+    <div class="card-header">{{ page.intro }}</div>
 
-    {{ page.body|richtext }}
+    <div class="card-body">{{page.body|richtext}}</div>
+
 
     <p><a href="{{ page.get_parent.url }}">Return to blog</a></p>
 
