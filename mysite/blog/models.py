@@ -1,9 +1,14 @@
 from django.db import models
 
-# Add these:
-from wagtail.models import Page
+# New imports added for ParentalKey, Orderable, InlinePanel
+
+from modelcluster.fields import ParentalKey
+
+from wagtail.models import Page, Orderable
 from wagtail.fields import RichTextField
-from wagtail.admin.panels import FieldPanel
+from wagtail.admin.panels import FieldPanel, InlinePanel
+from wagtail.search import index
+
 
 
 class BlogIndexPage(Page):
@@ -24,16 +29,21 @@ class BlogIndexPage(Page):
 
 
 
-# add this:
-from wagtail.search import index
 
+# ... Keep the definition of BlogIndexPage, update the content_panels of BlogPage, and add a new BlogPageGalleryImage model:
 
-# Keep the definition of BlogIndexPage model, and add the BlogPage model:
 
 class BlogPage(Page):
     date = models.DateField("Post date")
     intro = models.CharField(max_length=250)
     body = RichTextField(blank=True)
+    # Add the main_image method:
+    def main_image(self):
+        gallery_item = self.gallery_images.first()
+        if gallery_item:
+            return gallery_item.image
+        else:
+            return None
 
     search_fields = Page.search_fields + [
         index.SearchField('intro'),
@@ -44,6 +54,17 @@ class BlogPage(Page):
         FieldPanel('date'),
         FieldPanel('intro'),
         FieldPanel('body'),
+        InlinePanel('gallery_images', label="Gallery images"),
     ]
 
+class BlogPageGalleryImage(Orderable):
+    page = ParentalKey(BlogPage, on_delete=models.CASCADE, related_name='gallery_images')
+    image = models.ForeignKey(
+        'wagtailimages.Image', on_delete=models.CASCADE, related_name='+'
+    )
+    caption = models.CharField(blank=True, max_length=250)
 
+    panels = [
+        FieldPanel('image'),
+        FieldPanel('caption'),
+    ]

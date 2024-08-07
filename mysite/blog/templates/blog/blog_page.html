@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
-{% load wagtailcore_tags %}
+<!-- Load the wagtailimages_tags: -->
+{% load wagtailcore_tags wagtailimages_tags %}
 
 {% block body_class %}template-blogpage{% endblock %}
 
@@ -11,11 +12,23 @@
         </p>
     </div>
 
+    <!--div class="intro">{{ page.intro }}</div-->
     <div class="card-header">{{ page.intro }}</div>
 
     <div class="card-body">{{page.body|richtext}}</div>
 
+    <!-- Add this: -->
+    {% for item in page.gallery_images.all %}
+        <div style="float: inline-start; margin: 10px">
+            {% image item.image fill-320x240 %}
+            <p>{{ item.caption }}</p>
+        </div>
+    {% endfor %}
 
     <p><a href="{{ page.get_parent.url }}">Return to blog</a></p>
 
+
 {% endblock %}
+
+
+

@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
-{% load wagtailcore_tags %}
+<!-- Load wagtailimages_tags: -->
+{% load wagtailcore_tags wagtailimages_tags %}
 
 {% block body_class %}template-blogindexpage{% endblock %}
 
@@ -12,6 +13,7 @@
     <!-- l'intro du blog -->
     <div class="card-header">{{ page.intro|richtext }}</div>
     <p></p>
+
 
     {% for post in blogpages %}
     {% with post=post.specific %}
@@ -25,10 +27,15 @@
                 <!--/h5-->
             </div>
 
+		   <!-- Add this: -->
+				{% with post.main_image as main_image %}
+					{% if main_image %}{% image main_image fill-160x100 %}{% endif %}
+				{% endwith %}
+
             <div class="card-body">
 
                 <!-- on definit l'image comme un hyperlien vers la publication-->
-                <a href="{% pageurl post %}">
+                <!a href="{% pageurl post %}"-->
 				<!--  gestion des images-->
 
                 </a>
@@ -37,11 +44,14 @@
                 <p class="card-text">
                 {{ post.intro }}
                 </p>
+				<!-- je ne mets pas le texte dans la page d,index { post.body|richtext }}-->
 
             </div>
         </div>
 
     {% endwith %}
 {% endfor %}
+
+
 
 {% endblock %}
