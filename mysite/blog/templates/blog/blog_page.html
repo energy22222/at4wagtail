@@ -12,6 +12,24 @@
         </p>
     </div>
 
+
+
+    <!-- reste a formatter avec les bonnes classes de tag  -->
+    {% with authors=page.authors.all %}
+        {% if authors %}
+            <h3>Posted by:</h3>
+            <ul>
+                {% for author in authors %}
+                    <li style="display: inline">
+                        {% image author.author_image fill-40x60 style="vertical-align: middle" %}
+                        {{ author.name }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+
     <!--div class="intro">{{ page.intro }}</div-->
     <div class="card-header">{{ page.intro }}</div>
 

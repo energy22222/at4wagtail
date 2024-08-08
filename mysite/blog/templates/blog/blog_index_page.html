@@ -27,18 +27,19 @@
                 <!--/h5-->
             </div>
 
+            <div class="card-body">
+
 		   <!-- Add this: -->
 				{% with post.main_image as main_image %}
 					{% if main_image %}{% image main_image fill-160x100 %}{% endif %}
 				{% endwith %}
 
-            <div class="card-body">
 
                 <!-- on definit l'image comme un hyperlien vers la publication-->
                 <!a href="{% pageurl post %}"-->
 				<!--  gestion des images-->
 
-                </a>
+                <!--/a-->
 
 
                 <p class="card-text">
