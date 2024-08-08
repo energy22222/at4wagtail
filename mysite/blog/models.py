@@ -24,7 +24,21 @@ from django import forms
 from modelcluster.fields import ParentalKey, ParentalManyToManyField
 from wagtail.admin.panels import FieldPanel, InlinePanel, MultiFieldPanel
 
+# gestion des tags -----------------------------
+from modelcluster.contrib.taggit import ClusterTaggableManager
+from taggit.models import TaggedItemBase
 
+
+
+# ... add a new BlogPageTag model
+class BlogPageTag(TaggedItemBase):
+    content_object = ParentalKey(
+        'BlogPage',
+        related_name='tagged_items',
+        on_delete=models.CASCADE
+    )
+    
+# gestion des tags ------------------------------------------------
 
 class BlogIndexPage(Page):
     intro = RichTextField(blank=True)
@@ -43,7 +57,20 @@ class BlogIndexPage(Page):
     ]
 
 
+class BlogTagIndexPage(Page):
 
+    def get_context(self, request):
+
+        # Filter by tag
+        tag = request.GET.get('tag')
+        blogpages = BlogPage.objects.filter(tags__name=tag)
+
+        # Update template context
+        context = super().get_context(request)
+        context['blogpages'] = blogpages
+        return context
+        
+        
 
 # ... Keep the definition of BlogIndexPage, update the content_panels of BlogPage, and add a new BlogPageGalleryImage model:
 
@@ -53,6 +80,9 @@ class BlogPage(Page):
     intro = models.CharField(max_length=250)
     body = RichTextField(blank=True)
     authors = ParentalManyToManyField('blog.Author', blank=True)
+
+   # Add this:
+    tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
 
     # Add the main_image method:
     def main_image(self):
@@ -67,18 +97,19 @@ class BlogPage(Page):
         index.SearchField('body'),
     ]
 
-    # ... Keep the main_image method and search_fields definition. Modify your content_panels:
+
     content_panels = Page.content_panels + [
-        #multi field permet de regrouper la date et l,auteur pour plus de lisibilit
         MultiFieldPanel([
             FieldPanel('date'),
             FieldPanel('authors', widget=forms.CheckboxSelectMultiple),
+
+            # Add this:
+            FieldPanel('tags'),
         ], heading="Blog information"),
         FieldPanel('intro'),
         FieldPanel('body'),
         InlinePanel('gallery_images', label="Gallery images"),
     ]
-    
 
 
 
