@@ -1,20 +1,23 @@
-
+<!-- navbar de at4wagtail -->
 <!-- saved from url=(0143)https://www.pythonanywhere.com/user/aturcotte/files/home/aturcotte/wagtail-pythonanywhere-quickstart/blog/templates/blog/components/navbar.html -->
 <html><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
 
+              
+        {% load menu_tags %}
+
         <nav class="mb-2 navbar navbar-expand-lg navbar-dark bg-dark">
           <div class="container">
-            <a class="navbar-brand" href="https://www.pythonanywhere.com/">Menu</a>
+            <a class="navbar-brand" href="/">Menu</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
-              
+              {% main_menu template="menu/main_menu.html" %}
             </div>
           </div>
         </nav>
-
+		
 </body></html>
