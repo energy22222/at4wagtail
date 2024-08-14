@@ -1,6 +1,10 @@
 
 <!-- saved from url=(0144)https://www.pythonanywhere.com/user/aturcotte/files/home/aturcotte/wagtail-pythonanywhere-quickstart/blog/templates/blog/components/sidebar.html -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body>{% load static wagtailcore_tags wagtailimages_tags  %}
+<html>
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head>
+<body>
+
+{% load static wagtailcore_tags wagtailimages_tags  %}
 
 <div class="col-md-4">
 
@@ -18,7 +22,13 @@
           </span>
         </div>
 -->
-    
+    <form action="{% url 'search' %}" method="get">
+        <input type="text" name="query"{% if search_query %} value="{{ search_query }}"{% endif %}>
+        <p></p>
+        <input type="submit" value="Rechercher" class="button">
+    </form>
+
+
 <!--
 
 je laisse l'affichage des résultats dans Search.html
