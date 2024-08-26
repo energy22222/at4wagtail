@@ -9,16 +9,10 @@ from wagtail.snippets.models import register_snippet
         
 from django.db import models
 
-# New imports added for ParentalKey, Orderable, InlinePanel
-
-from modelcluster.fields import ParentalKey
-
 from wagtail.models import Page, Orderable
 from wagtail.fields import RichTextField
-#from wagtail.admin.panels import FieldPanel, InlinePanel
 from wagtail.search import index
 
-# New imports added for forms and ParentalManyToManyField, and MultiFieldPanel
 from django import forms
 
 from modelcluster.fields import ParentalKey, ParentalManyToManyField

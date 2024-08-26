@@ -11,9 +11,17 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
+import sys
+project_folder = os.path.expanduser('~/py/at4wagtail/mysite')
+if project_folder not in sys.path:
+    sys.path.insert(0, project_folder)
+from dotenv import load_dotenv
+load_dotenv(os.path.join(project_folder, '.env'))
+SECRET_KEY=os.getenv("SECRET_KEY")
+
+# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 
