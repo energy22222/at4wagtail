@@ -3,13 +3,10 @@
   
 
 en mode apprentissage de wagtail et django avec les versions suivantes :  
-Django>=4.2,<5.1 
-
-wagtail>=5.2,<5.3 
-
-wagtailmenus==4.0 
-
- plus ....a compléter
+Django>=4.2,<5.1
+wagtail>=5.2,<5.3
+wagtailmenus==4.0
+python-dotenv==1.0.1  (vs le setup 
 
  
 
