@@ -58,4 +58,7 @@ Ajout de wagtailmenus
 
 Voir la procédure d'installation via ce lien https://wagtailmenus.readthedocs.io/en/stable/installation.html 
 
+
+Ajout application "portfolio" en suivant le guide
+
  
