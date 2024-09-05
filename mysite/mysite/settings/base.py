@@ -34,9 +34,10 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 
 INSTALLED_APPS = [
     "home",
-    "blog",  # alain ajout 
-    "wagtail.contrib.modeladmin",  # alain new
-    "wagtailmenus",                # alain new
+    "blog",  #ajout
+    "wagtail.contrib.modeladmin",  #ajout
+    "wagtailmenus",                #ajout
+    "portfolio",  #ajout
     "search",
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
