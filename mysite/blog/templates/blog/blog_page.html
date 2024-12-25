@@ -38,7 +38,9 @@
     <!-- Add this: -->
     {% for item in page.gallery_images.all %}
         <div style="float: inline-start; margin: 10px">
-            {% image item.image fill-320x240 %}
+            <!-- voir la doc (section mutiple format)  https://docs.wagtail.org/en/stable/topics/images.html  -->
+            <!-- v2{% picture item.image format-{avif,webp,jpeg} width-600 %}  -->
+            {% srcset_image item.image width-{600,1200} sizes="(max-width: 800px) 400px, 80vw" %}  
             <p>{{ item.caption }}</p>
         </div>
     {% endfor %}

@@ -31,7 +31,8 @@
 
 		   <!-- Add this: -->
 				{% with post.main_image as main_image %}
-					{% if main_image %}{% image main_image fill-160x100 %}{% endif %}
+				    <!-- voir la doc (section mutiple format)  https://docs.wagtail.org/en/stable/topics/images.html  -->
+					{% if main_image %}{% srcset_image main_image width-{400,800} sizes="(max-width: 600px) 400px, 80vw" %} {% endif %}
 				{% endwith %}
 
 
